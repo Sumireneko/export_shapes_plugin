@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+ServiceTypes=Krita/PythonPlugin
+X-KDE-Library=export_shapes
+X-Python-2-Compatible=false
+X-Krita-Manual=Manual.html
+Name=Export save vector shapes as SVGs
+Comment=Export save selected shapes on Vector Layer as each SVG files

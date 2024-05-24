@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title> Export save selected shapes as SVG file</title>
+<style type="text/css">
+<!--
+	.body{padding:10px;}
+	p{padding-left:15px;margin-left:15px;}
+	th{background-color:#eeeeee;}
+	th,td{padding:8px;}
+	.na{color:#bbb;}
+	.ud{color:#ff3300;}
+	.c{text-align:center}
+-->
+</style>
+</head>
+<body class="body">
+<!--  Export save selected shapes as SVG file plug-in by L.Sumireneko.M -->
+<h2>About Export shapes as SVG plug-in v0.2</h2>
+Selected shapes on Vector Layer save as each SVG files.<br>
+<ul>
+<li>Export one SVG file per selected one shape</li>
+<li>The translate function of the shape transform attribute reset to 0 0</li>
+<li>The translate component in the matrix of transform attribute reset to 0 0</li>
+<li>SVG viewport create around the shape</li>
+<li>If extreme transform(shear or rotation) are applied, parts of the shape will extend outside the viewport.</li>
+<li>Support GroupShape</li>
+<li>Support Text shape</li>
+</ul>
+<h3>Where the command find?</h3>
+The menu,Layer → Export → Save Selected Shapes as SVGs...
+
+<h3>How to Use</h3>
+<ol>
+<li>Select shapes and use this command.</li>
+<li>File Selector opend,decide the file name and Choose Save Folder.</li>
+<li>Save SVG file with name with increment number and with .svg extension.</li>
+<li>Notification dialog will appear in center when all finished (disappears it soon)</li>
+</ol>
+For example, named "file.svg",Then export a following
+<blockquote>
+file0.svg<br>
+file1.svg<br>
+file2.svg<br>
+:<br>
+:<br>
+</blockquote>
+
