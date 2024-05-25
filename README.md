@@ -29,5 +29,5 @@ For example,set a named "file.svg",Then export a following
 >   :  
 >   :  
 
-### Update hitroy
+### Update histries
 2024.05.25 v0.2 First Release
