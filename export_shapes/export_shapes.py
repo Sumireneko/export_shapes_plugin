@@ -1,7 +1,7 @@
 # ==========================================================
-#   Export save selected shapes as SVG file plug-in v0.2 
+#   Export save selected shapes as SVG file plug-in v0.3 
 # ==========================================================
-# Copyright (C) 2024 L.Sumireneko.M
+# Copyright (C) 2025 L.Sumireneko.M
 # This program is free software: you can redistribute it and/or modify it under the 
 # terms of the GNU General Public License as published by the Free Software Foundation,
 # either version 3 of the License, or (at your option) any later version.
@@ -13,15 +13,32 @@
 # You should have received a copy of the GNU General Public License along with this program.
 # If not, see <https://www.gnu.org/licenses/>. 
 
-from krita import *
-from PyQt5.QtWidgets import *
-from PyQt5.Qt import *
-from PyQt5.QtGui import *
-from PyQt5 import QtCore
-
 from io import StringIO
 import re,os,time,copy,math
 
+import krita
+try:
+    if int(krita.qVersion().split('.')[0]) == 5:
+        raise
+
+    # PyQt6
+    from PyQt6.QtWidgets import *
+    from PyQt6.QtGui import *
+    from PyQt6.QtCore import (
+        QObject, QEvent, QTimer, QSignalBlocker, pyqtSignal, QPointF, Qt
+    )
+    from PyQt6 import QtCore
+
+except:
+    # PyQt5 fallback
+    from PyQt5.QtWidgets import *
+    from PyQt5.QtGui import *
+    from PyQt5.QtCore import (
+        QObject, QEvent, QTimer, QSignalBlocker, pyqtSignal, QPointF, Qt
+    )
+    from PyQt5 import QtCore
+
+from krita import *
 
 
 # ====================
