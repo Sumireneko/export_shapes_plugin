@@ -1,6 +1,6 @@
-## About Export shapes as SVG plug-in 
+## About Export shapes as SVG plug-in v0.3
 Export save selected shapes on Vector Layer as each SVG files.
-This plug-in work on Krita 5.2.2
+Tested with Krita v5.2.14(PyQt5 with Python 3.13)
 
 * Export one SVG file per selected one shape
 * The translate function of the shape transform attribute reset to 0 0
@@ -30,4 +30,7 @@ For example,set a named "file.svg",Then export a following
 >   :  
 
 ### Update histries
+2025.10.19 v0.3
+- Preliminary PyQt6 compatibility added Updated import logic to support PyQt6 for future Krita 6.x compatibility.
+- Note: PyQt6 functionality has not been tested yet. This change is preparatory and not guaranteed to be stable.
 2024.05.25 v0.2 First Release
