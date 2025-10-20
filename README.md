@@ -33,4 +33,5 @@ For example,set a named "file.svg",Then export a following
 2025.10.19 v0.3
 - Preliminary PyQt6 compatibility added Updated import logic to support PyQt6 for future Krita 6.x compatibility.
 - Note: PyQt6 functionality has not been tested yet. This change is preparatory and not guaranteed to be stable.
-2024.05.25 v0.2 First Release
+  
+2024.05.25 v0.2 First Release  
