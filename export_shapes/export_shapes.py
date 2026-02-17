@@ -1,7 +1,7 @@
 # ==========================================================
-#   Export save selected shapes as SVG file plug-in v0.3 
+#   Export save selected shapes as SVG file plug-in v0.4 
 # ==========================================================
-# Copyright (C) 2025 L.Sumireneko.M
+# Copyright (C) 2026 L.Sumireneko.M
 # This program is free software: you can redistribute it and/or modify it under the 
 # terms of the GNU General Public License as published by the Free Software Foundation,
 # either version 3 of the License, or (at your option) any later version.
@@ -17,29 +17,13 @@ from io import StringIO
 import re,os,time,copy,math
 
 import krita
-try:
-    if int(krita.qVersion().split('.')[0]) == 5:
-        raise
-
-    # PyQt6
-    from PyQt6.QtWidgets import *
-    from PyQt6.QtGui import *
-    from PyQt6.QtCore import (
-        QObject, QEvent, QTimer, QSignalBlocker, pyqtSignal, QPointF, Qt
-    )
-    from PyQt6 import QtCore
-
-except:
-    # PyQt5 fallback
-    from PyQt5.QtWidgets import *
-    from PyQt5.QtGui import *
-    from PyQt5.QtCore import (
-        QObject, QEvent, QTimer, QSignalBlocker, pyqtSignal, QPointF, Qt
-    )
-    from PyQt5 import QtCore
-
 from krita import *
-
+from .qt_compat import qt_exec,QC
+from .qt_compat import (
+    QEvent, QColor, QPalette, 
+    QDialog, QVBoxLayout, QSlider, QSpinBox, 
+    QPushButton, QColorDialog, QMessageBox
+)
 
 # ====================
 # Utilities
@@ -49,31 +33,44 @@ def message(mes):
     mb = QMessageBox()
     mb.setText(str(mes))
     mb.setWindowTitle('Message')
-    mb.setStandardButtons(QMessageBox.Ok)
-    ret = mb.exec()
-    if ret == QMessageBox.Ok:
+    mb.setStandardButtons(QC.StdBtn.Ok) 
+    
+    ret = qt_exec(mb) 
+
+    if ret == QC.StdBtn.Ok:
         pass # OK clicked
 
 
 # create dialog  and show it
-def notice_autoclose_dialog(message):
+def notice_autoclose_dialog(message_text):
     app = Krita.instance()
     qwin = app.activeWindow().qwindow()
     qq = qwin.size()
+    
     wpos = math.ceil(qq.width() * 0.45)
     hpos = math.ceil(qq.height() * 0.45)
-    
-    noticeDialog = QDialog() 
-    noticeDialog.setWindowFlags(QtCore.Qt.FramelessWindowHint)
-    label = QLabel(message)
+
+    noticeDialog = QDialog()
+
+    noticeDialog.setWindowFlags(QC.Window.FramelessWindowHint)
+
+    label = QLabel(message_text)
     hboxd = QHBoxLayout()
     hboxd.addWidget(label)
     noticeDialog.setLayout(hboxd)
-    noticeDialog.setWindowTitle("Title") 
+    noticeDialog.setWindowTitle("Title")
+
+    noticeDialog.move(qwin.x() + wpos, qwin.y() + hpos)
     
-    noticeDialog.move(qwin.x()+wpos,qwin.y()+hpos)
+    # Close window
     QtCore.QTimer.singleShot(1500, noticeDialog.close)
-    noticeDialog.exec_() # show
+
+    qt_exec(noticeDialog)
+
+
+
+
+
 
 # ====================
 # Main
@@ -196,3 +193,5 @@ class export_shapes(Extension):
 
         pass
 
+# And add the extension to Krita's list of extensions:
+Krita.instance().addExtension(export_shapes(Krita.instance()))
